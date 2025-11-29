@@ -1,4 +1,4 @@
-# kritika-fyp
+# Anish-fyp
 
 This is a Django project for managing college admissions.
 
