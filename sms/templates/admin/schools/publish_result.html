@@ -1,0 +1,39 @@
+{% extends "./school_base.html" %} {% block body %}
+
+<div class="container">
+    <h2>Publish Result for {{ application.student.first_name }} {{ application.student.last_name }}</h2>
+
+    <h3 class="py-4">Application Details</h3>
+    <table class="table table-bordered py-3">
+        <tr>
+            <th>Application ID</th>
+            <td>{{ application.id }}</td>
+        </tr>
+        <tr>
+            <th>Student Name</th>
+            <td>{{ application.student.first_name }} {{ application.student.last_name }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ application.student.user.email }}</td>
+        </tr>
+        <tr>
+            <th>Symbol Number</th>
+            <td>{{ application.symbol_number }}</td>
+        </tr>
+    </table>
+
+    <h3 class="py-4">Publish Entrance Exam Result</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="grid grid-cols-2 gap-4 py-4">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-success">Publish Result</button>
+    </form>
+
+    <div class="actions mt-3">
+        <a href="{% url 'application_list' %}" class="btn btn-primary">Back to Application List</a>
+    </div>
+</div>
+{% endblock %}

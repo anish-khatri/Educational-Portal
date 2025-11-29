@@ -1,0 +1,84 @@
+{% extends "./school_base.html" %}
+
+{% block head %}
+<!-- Ensure Tailwind CSS is included in the base file -->
+{% endblock %}
+
+{% block body %}
+<h2 class="text-3xl font-semibold mb-6">Your Applications</h2>
+
+{% if application %}
+<div class="overflow-x-auto bg-white shadow-lg rounded-lg p-6">
+  <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Application Details</h2>
+
+  <!-- Student and Application Table -->
+  <table class="min-w-full table-auto text-gray-600">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="py-3 px-6 text-left font-semibold">Field</th>
+        <th class="py-3 px-6 text-left font-semibold">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Student Information -->
+      <tr class="border-b">
+        <td class="py-3 px-6 font-medium">Status</td>
+        <td class="py-3 px-6">{{ application.status }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-6 font-medium">Student ID</td>
+        <td class="py-3 px-6">{{ student.id }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-6 font-medium">Name</td>
+        <td class="py-3 px-6">{{ student.first_name }} {{ student.last_name }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-6 font-medium">Phone</td>
+        <td class="py-3 px-6">{{ student.phone }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-6 font-medium">Email</td>
+        <td class="py-3 px-6">{{ student.user.email }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-6 font-medium">Date of Birth</td>
+        <td class="py-3 px-6">{{ student.dob }}</td>
+      </tr>
+
+      <!-- Application Details -->
+      <tr class="border-b">
+        <td class="py-3 px-6 font-medium">School</td>
+        <td class="py-3 px-6">{{ application.school.name }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-6 font-medium">Application Status</td>
+        <td class="py-3 px-6">{{ application.get_status_display }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-6 font-medium">Application Date</td>
+        <td class="py-3 px-6">{{ application.application_date }}</td>
+      </tr>
+      <tr>
+        <td class="py-3 px-6 font-medium">Supporting Documents</td>
+        <td class="py-3 px-6">
+          {% if application.supporting_documents %}
+          <a href="{{ application.supporting_documents.url }}" target="_blank"
+            class="text-blue-600 font-bold hover:underline">
+            <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+              View Document
+            </button>
+          </a>
+          {% else %}
+          <span class="text-red-600">No supporting documents uploaded.</span>
+          {% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% else %}
+<p class="text-xl text-center text-gray-600 mt-8">You have not applied to any schools yet.</p>
+{% endif %}
+{% endblock %}

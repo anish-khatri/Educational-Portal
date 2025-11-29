@@ -1,0 +1,147 @@
+{% extends "./student_base.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock title %}
+
+{% block body %}
+    <div>
+        <div id="dashboard" class="">
+          <h1 class="text-3xl font-bold mb-6">Welcome, {{ user.username }}!</h1>
+            <section class="">
+
+                <div class="grid grid-cols-4 gap-2">
+                {% if allNotifications %}
+                <div class="bg-yellow-100 col-span-3 p-4 rounded-md mb-4">
+                    <h4 class="text-xl font-semibold">All Notifications</h4>
+                    <ul class="mt-2 flex gap-2">
+                        {% for notification in allNotifications %}
+                            <li class="text-gray-700 border-b py-2">
+                                <strong>{{ notification.title }}:</strong> {{ notification.message }}
+                            </li>
+                        {% empty %}
+                            <li class="text-gray-500">No new notifications.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+                <div class="relative  inline-block text-left">
+                    <button id="notification-toggle" onclick="toggleNotifications()" class="relative focus:outline-none">
+                        <svg class="w-12 h-12 text-gray-600 hover:text-gray-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405C18.385 15.21 18 14.11 18 13V9a6 6 0 00-5-5.917V3a1 1 0 10-2 0v.083A6.002 6.002 0 006 9v4c0 1.11-.385 2.21-1.595 3.595L3 17h5m7 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        </svg>
+                        {% if unread_count > 0 %}
+                            <span class="absolute top-0 right-0 inline-block w-[20px] h-[20px] text-sm text-white bg-red-600 rounded-full">{{unread_count}}</span>
+                        {% endif %}
+                    </button>
+
+                    <div id="notification-dropdown" class="hidden absolute right-0 mt-2 w-94 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                        <div class="px-4 py-2 border-b flex justify-between items-center">
+                            <span class="font-semibold text-gray-700">Notifications</span>
+                            <form action="{% url 'mark_all_notifications_as_read' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="text-xs text-blue-500 hover:underline">Mark all as read</button>
+                            </form>
+                        </div>
+                        <div class="max-h-64 overflow-y-auto">
+                            {% for notification in notifications %}
+                                <div class="px-4 py-3 border-b hover:bg-gray-50">
+                                    <div class="flex justify-between items-center">
+                                        <p class="text-sm text-gray-700">{{ notification.message }}</p>
+                                        {% if not notification.is_read %}
+                                            <form action="{% url 'mark_notification_as_read' notification.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="text-xs text-blue-500 hover:underline">Mark</button>
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% empty %}
+                                <div class="px-4 py-4 text-sm text-gray-500 text-center">No notifications</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="stat-card bg-gray-100 p-4 rounded-md mb-4 flex justify-evenly">
+                        <h4 class="text-xl font-semibold">Total Schools:</h4>
+                        <p class="text-lg">{{ school_count }}</p>
+                    </div>
+
+                    <div class="stat-card bg-gray-100 p-4 rounded-md shadow-md mb-4">
+                        <h4 class="text-xl font-semibold">Accepted Applications:</h4>
+                        <p class="text-lg">Count: {{ accepted_applications_count }}</p>
+                        {% if accepted_schools %}
+                            <ul class="mt-2">
+                                {% for school in accepted_schools %}
+                                    <li class="text-gray-700">{{ school }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                        {% endif %}
+                    </div>
+
+                    <div class="stat-card bg-gray-100 p-4 rounded-md shadow-md mb-4">
+                        <h4 class="text-xl font-semibold">Rejected Applications:</h4>
+                        <p class="text-lg">Count: {{ rejected_applications_count }}</p>
+                        {% if rejected_schools %}
+                            <ul class="mt-2">
+                                {% for school in rejected_schools %}
+                                    <li class="text-gray-700">{{ school }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                        {% endif %}
+                    </div>
+
+                    <div class="stat-card bg-gray-100 p-4 rounded-md shadow-md mb-4">
+                        <h4 class="text-xl font-semibold">Schools with Published Results:</h4>
+                        {% if schools_with_results %}
+                            <ul class="mt-2">
+                                {% for school in schools_with_results %}
+                                    <li class="text-gray-700">{{ school }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+            <div class="container mx-auto px-4 py-8">
+              <h2 class="text-2xl font-bold text-gray-800 mb-6">Schools that have Accepted You</h2>
+          
+              <div class="overflow-x-auto">
+                  <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+                      <thead>
+                          <tr class="bg-gray-100 text-left">
+                              <th class="px-6 py-3 text-sm font-semibold text-gray-600">School Name</th>
+                              <th class="px-6 py-3 text-sm font-semibold text-gray-600">Address</th>
+                              <th class="px-6 py-3 text-sm font-semibold text-gray-600">Applied Date</th>
+                              <th class="px-6 py-3 text-sm font-semibold text-gray-600">Status</th>
+                              <th class="px-6 py-3 text-sm font-semibold text-gray-600">Action</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {% for app in accepted_apps %}
+                              <tr class="border-b">
+                                  <td class="px-6 py-4 text-sm text-gray-800">{{ app.school.name }}</td>
+                                  <td class="px-6 py-4 text-sm text-gray-600">{{ app.school.address }}</td> 
+                                  <td class="px-6 py-4 text-sm text-gray-600">{{ app.application_date }}</td> 
+                                  <td class="px-6 py-4 text-md font-semibold text-green-600">{{ app.status }}</td>
+                                  <td class="px-6 py-4 text-sm text-center">
+                                      <a href="{% url 'show_application' app.id %}" class="text-blue-500 hover:underline">View Details</a>
+                                  </td>
+                              </tr>
+                          {% empty %}
+                              <tr>
+                                  <td colspan="5" class="px-6 py-4 text-center text-gray-500">No schools have accepted the student yet.</td>
+                              </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>        
+        </div>
+    </div>
+{% endblock body %}

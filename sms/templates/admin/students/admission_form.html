@@ -1,0 +1,26 @@
+{% extends "./student_base.html" %}
+{% block body %}
+<div class="container">
+    <p><strong>Applicant Name:</strong> {{ application.student.first_name }} {{application.student.last_name}}</p>
+    <p><strong>Applied College:</strong> {{ application.school.name }}</p>
+    <p><strong>Applied Course:</strong> {{ application.course.name }}</p>
+    <p><strong>Applied Admission fee:</strong> {{ application.course.admission_fees }}</p>
+    <p><strong>Applied Course Duration:</strong> {{ application.course.duration }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="amount_paid">Amount Paid</label>
+            {{ form.amount_paid }}
+        </div>
+
+        <div class="form-group">
+            <label for="payment_method">Payment Method</label>
+            {{ form.payment_method }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Admission</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %} {% block body %}
+<div class="container my-5">
+    <h2 class="text-2xl font-bold mb-4">School Details</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{ school.name }}</h4>
+            <p><strong>User:</strong> {{ school.user.username }}</p>
+            <p><strong>Contact:</strong> {{ school.contact }}</p>
+            <p><strong>Address:</strong> {{ school.address }}</p>
+            <p><strong>Status:</strong> 
+                {% if school.status %}
+                    ✅ Approved
+                {% else %}
+                    ❌ Pending
+                {% endif %}
+            </p>
+            <p><strong>Subscription:</strong> {{ school.subscription }}</p>
+            <p><strong>Subscription Start:</strong> {{ school.subscription_start_date|default:"-" }}</p>
+            <p><strong>Subscription End:</strong> {{ school.subscription_end_date|default:"-" }}</p>
+            <p><strong>Subscription Active:</strong> {{ school.is_subscription_active }}</p>
+        </div>
+    </div>
+
+    <div class="flex justify-between items-center">
+        <a href="{% url 'school_list' %}" class="btn btn-secondary mt-4">Back to List</a>
+
+        <a href="{% url 'accept_school_subscription' school.id %}" class="btn btn-success">
+            Approve Subscription
+        </a>
+    </div>
+</div>
+{% endblock %}

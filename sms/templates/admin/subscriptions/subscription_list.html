@@ -1,0 +1,37 @@
+{% extends "admin/base.html" %}
+
+{% block body %}
+    <h2>Subscriptions</h2>
+    <a href="{% url 'subscription_create' %}" class="btn btn-primary">Add Subscription</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subscription in subscriptions %}
+                <tr>
+                    <td>{{ subscription.name }}</td>
+                    <td>{{ subscription.price }}</td>
+                    <td>{{ subscription.start_date }}</td>
+                    <td>{{ subscription.end_date }}</td>
+                    <td>{% if subscription.is_active %}Active{% else %}Inactive{% endif %}</td>
+                    <td>
+                        <a href="{% url 'subscription_update' subscription.pk %}" class="btn btn-warning">Edit</a>
+                        <a href="{% url 'subscription_delete' subscription.pk %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No subscriptions found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

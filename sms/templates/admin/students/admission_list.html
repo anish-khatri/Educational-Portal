@@ -1,0 +1,42 @@
+{% extends "./student_base.html" %}
+
+{% block body %}
+<div class="container">
+    <h2>Admission List</h2>
+
+    {% if admissions %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Applicant Name</th>
+                <th>College</th>
+                <th>Course</th>
+                <th>Admission Fee</th>
+                <th>Amount Paid</th>
+                <th>Due Amount</th>
+                <th>Payment Method</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for admission in admissions %}
+            <tr>
+                <td>{{ admission.application.student.first_name }} {{ admission.application.student.last_name }}</td>
+                <td>{{ admission.application.school.name }}</td>
+                <td>{{ admission.application.course.name }}</td>
+                <td>{{ admission.application.course.admission_fees }}</td>
+                <td>{{ admission.amount_paid }}</td>
+                <td>{{ admission.due_amount }}</td>
+                <td>{{ admission.payment_method }}</td>
+                <td>
+                    <a href="{% url 'admission_detail' admission.id %}" class="btn btn-info">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No admissions found.</p>
+    {% endif %}
+</div>
+{% endblock %}

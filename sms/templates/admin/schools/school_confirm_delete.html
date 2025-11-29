@@ -1,0 +1,11 @@
+{% extends "admin/base.html" %}
+
+{% block body %}
+<h2>Are you sure you want to delete this school?</h2>
+<p><strong>{{ school.name }}</strong></p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="{% url 'school_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

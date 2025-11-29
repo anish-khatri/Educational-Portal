@@ -1,0 +1,25 @@
+{% extends "./student_base.html" %}
+
+{% block body %}
+<h2>Confirm Payment</h2>
+
+<p><strong>Student:</strong> {{ admission.application.student.first_name }} {{ admission.application.student.last_name }}</p>
+<p><strong>Course:</strong> {{ admission.application.course.name }}</p>
+<p><strong>Amount to Pay:</strong> Rs. {{ payment.amount }}</p>
+<p><strong>Amount to Pay:</strong> Rs. {{ params.amount }}</p>
+
+<form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST" class="flex flex-col">
+    <input type="hidden"" id="amount" name="amount" value="{{ params.amount }}" required>
+    <input type="hidden"" id="tax_amount" name="tax_amount" value="{{ params.tax_amount }}" required>
+    <input type="hidden"" id="total_amount" name="total_amount" value="{{ params.total_amount }}" required>
+    <input type="hidden"" id="transaction_uuid" name="transaction_uuid" value="{{ params.transaction_uuid }}" required>
+    <input type="hidden"" id="product_code" name="product_code" value="{{ params.product_code }}" required>
+    <input type="hidden"" id="product_service_charge" name="product_service_charge" value="{{ params.psc }}" required>
+    <input type="hidden"" id="product_delivery_charge" name="product_delivery_charge" value="{{ params.pdc }}" required>
+    <input type="hidden"" id="success_url" name="success_url" value="{{ params.success_url }}" required>
+    <input type="hidden"" id="failure_url" name="failure_url" value="{{ params.failure_url }}" required>
+    <input type="hidden"" id="signed_field_names" name="signed_field_names" value="{{ params.signed_field_names }}" required>
+    <input type="hidden"" id="signature" name="signature" value="{{ signature }}" required>
+    <input value="Submit" type="submit">
+</form>
+{% endblock %}

@@ -1,0 +1,142 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        {% block title %} {% endblock title %}
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+    {% if messages %}
+    <div class="fixed top-10 right-5 z-50 space-y-3">
+        {% for message in messages %}
+        <div class="bg-teal-700 text-white border border-teal-500 rounded-lg px-4 py-3 shadow-md relative flex items-center alert-box">
+            <strong class="flex-grow">{{ message }}</strong>
+            <button type="button" class="text-teal-900 hover:text-teal-700 ml-4 close-btn">✖</button>
+        </div>
+        {% endfor %}
+    </div>
+    <script>
+        document.querySelectorAll('.close-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                this.parentElement.remove();
+            });
+        });
+    </script>
+    {% endif %}
+
+    <div id="page" class="site">
+        <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+        <div id="loader">
+            <div class="loader-container">
+                <div id="preloader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div><!-- #loader -->
+
+        <div class="menu-overlay"></div>
+
+        <header id="masthead" class="site-header" role="banner">
+            <div class="wrapper">
+                <div class="masthead-wrapper">
+                    <div class="site-branding">
+                        <div class="site-logo">
+                            <a href="#"><img src="{% static 'assets/images/logo.png' %}" alt="footer-logo"></a>
+                        </div>
+                    </div>
+
+                    <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Menu">
+                        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                            <svg viewBox="0 0 40 40" class="icon-menu">
+                                <g>
+                                    <rect y="7" width="40" height="2" />
+                                    <rect y="19" width="40" height="2" />
+                                    <rect y="31" width="40" height="2" />
+                                </g>
+                            </svg>
+                            <svg viewBox="0 0 612 612" class="icon-close">
+                                <polygon points="612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397 
+                          306,341.411 576.521,611.397 612,575.997 341.459,306.011" />
+                            </svg>
+                        </button>
+                        <ul id="primary-menu" class="menu nav-menu" aria-expanded="false">
+                            <li class="current-menu-item"><a href="/">Home</a></li>
+                            <li><a href="#">Academic</a></li>
+                            <li><a href="/home/schools/">Schools</a></li>
+                            <li id="profile-link" style="display: none;"><a href="/dashboard/">Dashboard</a></li>
+                            <li id="register-link"><a href="/register/">Register</a></li>
+                            <li id="login-link"><a href="/login/">Login</a></li>
+                            <li id="logout-link" style="display: none;"><a href="javascript:void(0);" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        {% block body %}{% endblock body %}
+
+        <footer id="colophon" class="site-footer">
+            <div class="wrapper">
+                <div class="site-info">
+                    <span class="footer-logo">
+                        <a href="/"><img src="{% static 'assets/images/logo.png' %}" alt="footer-logo"></a>
+                    </span>
+                    <span>© 2025 College Portal by <a href="#">Anish & Karun.</a> All Rights Reserved</span>
+                </div><!-- .site-info -->
+            </div><!-- .wrapper -->
+        </footer><!-- #colophon -->
+    </div><!-- #page-->
+
+    <script>
+        function isUserLoggedIn() {
+            const item = localStorage.getItem("user_logged_in");
+            if (!item) return false;
+
+            try {
+                const data = JSON.parse(item);
+                return data.value === true && new Date().getTime() < data.expiry;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem("user_logged_in");
+            document.getElementById("profile-link").style.display = "none";
+            document.getElementById("register-link").style.display = "inline-block";
+            document.getElementById("login-link").style.display = "inline-block";
+            document.getElementById("logout-link").style.display = "none";
+        }
+
+        if (isUserLoggedIn()) {
+            document.getElementById("profile-link").style.display = "inline-block";
+            document.getElementById("register-link").style.display = "none";
+            document.getElementById("login-link").style.display = "none";
+            document.getElementById("logout-link").style.display = "inline-block";
+        }
+    </script>
+
+    <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/navigation.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+
+</html>

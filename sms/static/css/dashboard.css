@@ -1,0 +1,556 @@
+.btn {
+  padding: 12px 24px;
+  min-width: 130px;
+  width: unset;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  background-color: #89debc;
+  border: 1px solid #89debc;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  font-family: "Philosopher", sans-serif;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #15171c;
+  border-color: #15171c;
+  color: #fff;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  color: #fff;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.sidebar .logo {
+  font-family: "Philosopher", serif;
+  font-size: 26px;
+  font-weight: 700;
+  padding: 25px 20px;
+}
+
+.sidebar .close-sidebar-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: none;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Main Content Styles */
+.main-content {
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f7f9fc;
+}
+
+.header .search-bar {
+  line-height: 1;
+}
+
+.header .profile-menu {
+  font-weight: 600;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+/* Hamburger Menu Styles */
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+  background-color: #89debc;
+  padding: 8px 14px;
+  max-width: 50px;
+}
+
+/* Overlay Styles */
+.overlay {
+  display: none;
+  position: fixed;
+  height: 100%;
+  opacity: 0.8;
+  z-index: 10;
+}
+
+/* Button Styling */
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #89debc;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+/* Overview Section */
+.overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  border-left: 4px solid #89debc;
+  /* Primary Color */
+}
+
+.card p {
+  font-size: 24px;
+  margin: 10px 0 0;
+}
+
+/* Subscriptions Table */
+/* .subscriptions-table {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+} */
+
+tr.expired {
+  background-color: #f8f8f8;
+}
+
+tr.expired td {
+  color: #eb0404;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .hamburger-menu {
+    display: block;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .sidebar .close-sidebar-btn {
+    display: block;
+    /* Show close button only on smaller screens */
+    position: absolute;
+    right: -46px;
+    top: 0px;
+    background-color: #89debc;
+    padding: 8px 14px;
+  }
+
+  .overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 993px) {
+  .hamburger-menu,
+  .sidebar .close-sidebar-btn {
+    display: none;
+    /* Hide hamburger and close button on larger screens */
+  }
+
+  .sidebar {
+    transform: translateX(0);
+    /* Sidebar should always be visible */
+  }
+
+  .main-content {
+    margin-left: 250px;
+  }
+}
+
+/* Manage Colleges Section */
+.manage-colleges-header {
+  display: flex;
+  gap: 10px;
+}
+
+.search-bar {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filter-dropdown {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Summary Cards */
+.summary-cards {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+.card {
+  flex: 1;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Table Styling */
+.colleges-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.colleges-table th,
+.colleges-table td {
+  text-align: left;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.status.active {
+  color: gray;
+}
+
+.status.expired {
+  color: red;
+}
+
+/* Namespace CSS with college-details-modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.adding-college .add-modal,
+.editing-college .edit-modal {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 30px;
+  color: #333;
+  cursor: pointer;
+}
+
+.modal h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.college-details-modal .college-details .detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.college-details-modal .college-details .detail-row strong {
+  color: #4d4d4d;
+}
+
+.college-details-modal .edit-btn,
+.add-college-modal .submit-btn,
+.edit-college-modal .submit-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #89debc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.college-details-modal .edit-btn:hover,
+.add-college-modal .submit-btn:hover,
+.edit-college-modal .submit-btn {
+  background-color: #89debc;
+}
+
+.input-row {
+  margin-bottom: 15px;
+}
+
+.input-row label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-row input,
+.input-row select,
+.input-row textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  line-height: 1.6;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-bottom: 2px solid #f2f2f2;
+  font-size: 14px;
+  color: #333;
+}
+
+th {
+  background-color: #f9f9f9;
+  font-weight: 700;
+  color: #111;
+  border: 1px solid #ddd;
+  text-transform: uppercase;
+}
+
+tr {
+  border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+td {
+  font-size: 16px;
+}
+
+table button {
+  padding: 5px 12px;
+}
+
+/* Logout Confirmation Section */
+.logout-confirmation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 35px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.logout-confirmation h2 {
+  margin-bottom: 40px;
+  font-size: 18px;
+  color: #333;
+}
+
+.logout-confirmation .logout-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.logout-confirmation .yes-btn,
+.logout-confirmation .no-btn {
+  padding: 10px 20px;
+  background-color: #89debc;
+  /* Primary Color */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-confirmation .yes-btn:hover {
+  background-color: #89debc;
+  /* Hover Color */
+}
+
+.logout-confirmation .no-btn {
+  background-color: #f44336;
+}
+
+.logout-confirmation .no-btn:hover {
+  background-color: #d32f2f;
+}
+
+.logout-confirmation .yes-btn:active,
+.logout-confirmation .no-btn:active {
+  transform: translateY(2px);
+}
+
+.event-item {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.event-item p,
+.event-item h4 {
+  margin: 0;
+}
+
+.department-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 40px;
+}
+section {
+  position: relative;
+  background-color: #fff;
+  padding: 25px;
+  margin: 25px 0;
+  border-radius: 12px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
+aside ul li {
+  border-radius: 6px !important;
+}
+aside ul li a {
+  background-color: #89debc !important;
+}
+.table-striped img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+table .btn {
+  font-size: 16px;
+  text-transform: capitalize;
+  padding: 7px 14px;
+  min-width: unset;
+  margin: 0 6px 6px 0;
+  font-weight: 500;
+}
+.btn-primary {
+  margin-bottom: 25px;
+}
+#admin-profile > h2,
+main > h2,
+main > .container > h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+#admin-profile h3 {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+table {
+  margin-top: 20px;
+}
+.form-group {
+  margin-bottom: 16px;
+}
+.form-group label,
+form label {
+  margin-bottom: 6px;
+}
+form > p {
+  margin-bottom: 16px;
+}
+form > button {
+  margin: 10px 0 0 0 !important;
+}
+.flex main {
+  height: 100vh;
+  overflow: scroll;
+}
+.flex main::-webkit-scrollbar {
+  display: none;
+}
+.admission-details p {
+  margin-bottom: 10px;
+}
+.admission-details .btn {
+  margin: 10px 0 0 0;
+}

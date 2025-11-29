@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>College Admin Dashboard</title>
+        <link rel="stylesheet" type="text/css"
+            href="assets/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="css/dashboard.css">
+    </head>
+    <body>
+        <div class="college-admin-dashboard" id="college-admin">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="logo">College Portal</div>
+                <button class="close-sidebar-btn">×</button>
+                <nav>
+                    <ul class="tabs">
+                        <li data-tab="dashboard" class="active"><a
+                                href="#">Dashboard</a></li>
+                        <li data-tab="manage-students"><a href="#">Manage
+                                Students</a></li>
+                        <li data-tab="manage-faculty"><a href="#">Manage
+                                Faculty</a></li>
+                        <li data-tab="departments"><a
+                                href="#">Departments</a></li>
+                        <li data-tab="courses"><a href="#">Courses</a></li>
+                        <li data-tab="attendance"><a
+                                href="#">Attendance</a></li>
+                        <li data-tab="examinations"><a
+                                href="#">Examinations</a></li>
+                        <li data-tab="profile"><a href="#">Profile</a></li>
+                        <li data-tab="log-out"><a href="#">Logout</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Overlay -->
+            <div class="overlay"></div>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Header -->
+                <header class="header">
+                    <div class="hamburger-menu">&#9776;</div>
+                    <input type="text" placeholder="Search..."
+                        class="search-bar">
+                    <div class="profile-menu">College Admin</div>
+                </header>
+
+                <!-- Dashboard Tab -->
+                <div id="dashboard" class="tab-content active">
+                    <section class="overview">
+                        <div class="card">
+                            <h3>Total Students</h3>
+                            <p>1,500</p>
+                        </div>
+                        <div class="card">
+                            <h3>Total Faculty</h3>
+                            <p>120</p>
+                        </div>
+                        <div class="card">
+                            <h3>Departments</h3>
+                            <p>8</p>
+                        </div>
+                        <div class="card">
+                            <h3>Active Courses</h3>
+                            <p>45</p>
+                        </div>
+                    </section>
+
+                    <!-- Recent Activities -->
+                    <section class="recent-activities">
+                        <h2>Recent Activities</h2>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <span class="activity-time">Today 10:30
+                                    AM</span>
+                                <span class="activity-desc">New student
+                                    registration completed</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-time">Today 09:15
+                                    AM</span>
+                                <span class="activity-desc">Faculty meeting
+                                    scheduled for tomorrow</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-time">Yesterday 3:45
+                                    PM</span>
+                                <span class="activity-desc">Examination results
+                                    published</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Upcoming Events -->
+                    <section class="upcoming-events">
+                        <h2>Upcoming Events</h2>
+                        <div class="events-calendar">
+                            <div class="event-item">
+                                <div class="event-date">May 15</div>
+                                <div class="event-details">
+                                    <h4>Annual Sports Day</h4>
+                                    <p>College Ground, 9:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">May 20</div>
+                                <div class="event-details">
+                                    <h4>Parent-Teacher Meeting</h4>
+                                    <p>Main Auditorium, 2:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Manage Students Tab -->
+                <div id="manage-students" class="tab-content">
+                    <div class="manage-students-header">
+                        <h2>Student Management</h2>
+                        <button class="add-btn">Add New Student</button>
+                    </div>
+
+                    <!-- Students Table -->
+                    <section class="students-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Year</th>
+                                    <th>Contact</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ST2024001</td>
+                                    <td>John Smith</td>
+                                    <td>Computer Science</td>
+                                    <td>2nd Year</td>
+                                    <td>john@email.com</td>
+                                    <td class="status active">Active</td>
+                                    <td>
+                                        <button class="edit-btn">Edit</button>
+                                        <button
+                                            class="delete-btn">Delete</button>
+                                    </td>
+                                </tr>
+                                <!-- More student rows -->
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Add Student Modal -->
+                    <div class="add-student-modal add-modal modal">
+                        <div class="modal-content">
+                            <span class="close-modal-btn">&times;</span>
+                            <h2>Add New Student</h2>
+                            <form class="add-student-form">
+                                <div class="input-row">
+                                    <label for="student-name">Full Name</label>
+                                    <input type="text" id="student-name"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="student-id">Student ID</label>
+                                    <input type="text" id="student-id" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="department">Department</label>
+                                    <select id="department" required>
+                                        <option value>Select Department</option>
+                                        <option value="cs">Computer
+                                            Science</option>
+                                        <option value="eng">Engineering</option>
+                                        <option value="arts">Arts</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="year">Year</label>
+                                    <select id="year" required>
+                                        <option value="1">1st Year</option>
+                                        <option value="2">2nd Year</option>
+                                        <option value="3">3rd Year</option>
+                                        <option value="4">4th Year</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="phone">Phone</label>
+                                    <input type="tel" id="phone" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="address">Address</label>
+                                    <input type="text" id="address"
+                                        name="address">
+                                </div>
+                                <button type="submit" class="submit-btn">Add
+                                    Student</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Edit Student Modal -->
+                    <div class="edit-student-modal edit-modal modal">
+                        <div class="modal-content">
+                            <span class="close-modal-btn">&times;</span>
+                            <h2>Edit Student</h2>
+                            <form class="edit-student-form">
+                                <div class="input-row">
+                                    <label for="edit-student-name">Full
+                                        Name</label>
+                                    <input type="text" id="edit-student-name"
+                                        value="John Smith" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-student-id">Student
+                                        ID</label>
+                                    <input type="text" id="edit-student-id"
+                                        value="ST2024001" required readonly>
+                                </div>
+                                <div class="input-row">
+                                    <label
+                                        for="edit-department">Department</label>
+                                    <select id="edit-department" required>
+                                        <option value="cs" selected>Computer
+                                            Science</option>
+                                        <option value="eng">Engineering</option>
+                                        <option value="arts">Arts</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-year">Year</label>
+                                    <select id="edit-year" required>
+                                        <option value="1">1st Year</option>
+                                        <option value="2" selected>2nd
+                                            Year</option>
+                                        <option value="3">3rd Year</option>
+                                        <option value="4">4th Year</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-email">Email</label>
+                                    <input type="email" id="edit-email"
+                                        value="john@email.com" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-phone">Phone</label>
+                                    <input type="tel" id="edit-phone"
+                                        value="123-456-7890" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-address">Address</label>
+                                    <input type="text" id="edit-address"
+                                        name="address"
+                                        value="123 Main St, City">
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-status">Status</label>
+                                    <select id="edit-status" required>
+                                        <option value="active"
+                                            selected>Active</option>
+                                        <option
+                                            value="inactive">Inactive</option>
+                                        <option
+                                            value="graduated">Graduated</option>
+                                        <option value="on-leave">On
+                                            Leave</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="submit-btn">Save
+                                    Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manage Faculty Tab -->
+                <div id="manage-faculty" class="tab-content">
+                    <div class="manage-faculty-header">
+                        <h2>Faculty Management</h2>
+                        <button class="add-btn">Add New Faculty</button>
+                    </div>
+
+                    <!-- Faculty Table -->
+                    <section class="faculty-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Faculty ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Designation</th>
+                                    <th>Contact</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>FAC001</td>
+                                    <td>Dr. Sarah Johnson</td>
+                                    <td>Computer Science</td>
+                                    <td>Professor</td>
+                                    <td>sarah@college.edu</td>
+                                    <td class="status active">Active</td>
+                                    <td>
+                                        <button class="edit-btn">Edit</button>
+                                        <button
+                                            class="delete-btn">Delete</button>
+                                    </td>
+                                </tr>
+                                <!-- More faculty rows -->
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Add Faculty Modal -->
+                    <div class="add-faculty-modal add-modal modal">
+                        <div class="modal-content">
+                            <span class="close-modal-btn">&times;</span>
+                            <h2>Add New Faculty</h2>
+                            <form class="add-faculty-form">
+                                <div class="input-row">
+                                    <label for="faculty-name">Full Name</label>
+                                    <input type="text" id="faculty-name"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="faculty-id">Faculty ID</label>
+                                    <input type="text" id="faculty-id" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="department">Department</label>
+                                    <select id="department" required>
+                                        <option value>Select Department</option>
+                                        <option value="cs">Computer
+                                            Science</option>
+                                        <option value="eng">Engineering</option>
+                                        <option value="arts">Arts</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="designation">Designation</label>
+                                    <select id="designation" required>
+                                        <option
+                                            value="professor">Professor</option>
+                                        <option value="associate">Associate
+                                            Professor</option>
+                                        <option value="assistant">Assistant
+                                            Professor</option>
+                                        <option
+                                            value="lecturer">Lecturer</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="phone">Phone</label>
+                                    <input type="tel" id="phone" required>
+                                </div>
+                                <div class="input-row">
+                                    <label
+                                        for="qualifications">Qualifications</label>
+                                    <textarea id="qualifications"
+                                        required></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">Add
+                                    Faculty</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Edit Faculty Modal -->
+                    <div class="edit-faculty-modal edit-modal modal">
+                        <div class="modal-content">
+                            <span class="close-modal-btn">&times;</span>
+                            <h2>Edit Faculty</h2>
+                            <form class="edit-faculty-form">
+                                <div class="input-row">
+                                    <label for="edit-faculty-name">Full
+                                        Name</label>
+                                    <input type="text" id="edit-faculty-name"
+                                        value="Dr. Sarah Johnson" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-faculty-id">Faculty
+                                        ID</label>
+                                    <input type="text" id="edit-faculty-id"
+                                        value="FAC001" required readonly>
+                                </div>
+                                <div class="input-row">
+                                    <label
+                                        for="edit-department">Department</label>
+                                    <select id="edit-department" required>
+                                        <option value="cs" selected>Computer
+                                            Science</option>
+                                        <option value="eng">Engineering</option>
+                                        <option value="arts">Arts</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label
+                                        for="edit-designation">Designation</label>
+                                    <select id="edit-designation" required>
+                                        <option value="professor"
+                                            selected>Professor</option>
+                                        <option value="associate">Associate
+                                            Professor</option>
+                                        <option value="assistant">Assistant
+                                            Professor</option>
+                                        <option
+                                            value="lecturer">Lecturer</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-email">Email</label>
+                                    <input type="email" id="edit-email"
+                                        value="sarah@college.edu" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-phone">Phone</label>
+                                    <input type="tel" id="edit-phone"
+                                        value="987-654-3210" required>
+                                </div>
+                                <div class="input-row">
+                                    <label
+                                        for="edit-qualifications">Qualifications</label>
+                                    <textarea id="edit-qualifications"
+                                        required>Ph.D. in Computer Science</textarea>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-status">Status</label>
+                                    <select id="edit-status" required>
+                                        <option value="active"
+                                            selected>Active</option>
+                                        <option
+                                            value="inactive">Inactive</option>
+                                        <option value="on-leave">On
+                                            Leave</option>
+                                        <option value="retired">Retired</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="submit-btn">Save
+                                    Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Departments Tab -->
+                <div id="departments" class="tab-content">
+                    <div class="departments-header">
+                        <h2>Department Management</h2>
+                        <button class="add-btn">Add New Department</button>
+                    </div>
+
+                    <!-- Departments Table -->
+                    <section class="departments-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Department Code</th>
+                                    <th>Department Name</th>
+                                    <th>Head</th>
+                                    <th>Students</th>
+                                    <th>Faculty</th>
+                                    <th>Courses</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CS101</td>
+                                    <td>Computer Science</td>
+                                    <td>Dr. John Doe</td>
+                                    <td>450</td>
+                                    <td>25</td>
+                                    <td>15</td>
+                                    <td>
+                                        <button class="edit-btn">Edit</button>
+                                        <button
+                                            class="delete-btn">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ENG201</td>
+                                    <td>Engineering</td>
+                                    <td>Dr. Jane Smith</td>
+                                    <td>380</td>
+                                    <td>30</td>
+                                    <td>20</td>
+                                    <td>
+                                        <button class="edit-btn">Edit</button>
+                                        <button
+                                            class="delete-btn">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Add Department Modal -->
+                    <div class="add-department-modal add-modal modal">
+                        <div class="modal-content">
+                            <span class="close-modal-btn">&times;</span>
+                            <h2>Add New Department</h2>
+                            <form class="add-department-form">
+                                <div class="input-row">
+                                    <label for="dept-name">Department
+                                        Name</label>
+                                    <input type="text" id="dept-name" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="dept-head">Department
+                                        Head</label>
+                                    <input type="text" id="dept-head" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="dept-code">Department
+                                        Code</label>
+                                    <input type="text" id="dept-code" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="dept-students">Total
+                                        Students</label>
+                                    <input type="number" id="dept-students"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="dept-faculty">Total
+                                        Faculty</label>
+                                    <input type="number" id="dept-faculty"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="dept-courses">Total
+                                        Courses</label>
+                                    <input type="number" id="dept-courses"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label
+                                        for="dept-description">Description</label>
+                                    <textarea id="dept-description"
+                                        required></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">Add
+                                    Department</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Edit Department Modal -->
+                    <div class="edit-department-modal edit-modal modal">
+                        <div class="modal-content">
+                            <span class="close-modal-btn">&times;</span>
+                            <h2>Edit Department</h2>
+                            <form class="edit-department-form">
+                                <div class="input-row">
+                                    <label for="edit-dept-name">Department
+                                        Name</label>
+                                    <input type="text" id="edit-dept-name"
+                                        value="Computer Science" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-dept-head">Department
+                                        Head</label>
+                                    <input type="text" id="edit-dept-head"
+                                        value="Dr. John Doe" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-dept-code">Department
+                                        Code</label>
+                                    <input type="text" id="edit-dept-code"
+                                        value="CS101" required readonly>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-dept-students">Total
+                                        Students</label>
+                                    <input type="number" id="edit-dept-students"
+                                        value="450" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-dept-faculty">Total
+                                        Faculty</label>
+                                    <input type="number" id="edit-dept-faculty"
+                                        value="25" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-dept-courses">Total
+                                        Courses</label>
+                                    <input type="number" id="edit-dept-courses"
+                                        value="15" required>
+                                </div>
+                                <div class="input-row">
+                                    <label
+                                        for="edit-dept-description">Description</label>
+                                    <textarea id="edit-dept-description"
+                                        required>Department of Computer Science focuses on programming, AI, and software development.</textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">Save
+                                    Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Courses Tab -->
+                <div id="courses" class="tab-content">
+                    <div class="courses-header">
+                        <h2>Course Management</h2>
+                        <button class="add-btn">Add New Course</button>
+                    </div>
+
+                    <!-- Course Table -->
+                    <section
+                        class="courses-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Course Name</th>
+                                    <th>Department</th>
+                                    <th>Credits</th>
+                                    <th>Instructor</th>
+                                    <th>Capacity</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CS101</td>
+                                    <td>Introduction to Programming</td>
+                                    <td>Computer Science</td>
+                                    <td>3</td>
+                                    <td>Dr. John Smith</td>
+                                    <td>50/60</td>
+                                    <td class="status active">Active</td>
+                                    <td>
+                                        <button class="edit-btn">Edit</button>
+                                        <button
+                                            class="delete-btn">Delete</button>
+                                    </td>
+                                </tr>
+                                <!-- More course rows -->
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Add Course Modal -->
+                    <div class="add-course-modal add-modal modal">
+                        <div class="modal-content">
+                            <span class="close-modal-btn">&times;</span>
+                            <h2>Add New Course</h2>
+                            <form class="add-course-form">
+                                <div class="input-row">
+                                    <label for="course-name">Course
+                                        Name</label>
+                                    <input type="text" id="course-name"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="course-code">Course
+                                        Code</label>
+                                    <input type="text" id="course-code"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label
+                                        for="department">Department</label>
+                                    <select id="department" required>
+                                        <option value>Select
+                                            Department</option>
+                                        <option value="cs">Computer
+                                            Science</option>
+                                        <option
+                                            value="eng">Engineering</option>
+                                        <option value="arts">Arts</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="credits">Credits</label>
+                                    <input type="number" id="credits"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label
+                                        for="instructor">Instructor</label>
+                                    <select id="instructor" required>
+                                        <option value>Select
+                                            Instructor</option>
+                                        <!-- Populated dynamically -->
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="capacity">Capacity</label>
+                                    <input type="number" id="capacity"
+                                        required>
+                                </div>
+                                <button type="submit" class="submit-btn">Add
+                                    Course</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Edit Course Modal -->
+                    <div class="edit-course-modal edit-modal modal">
+                        <div class="modal-content">
+                            <span class="close-modal-btn">&times;</span>
+                            <h2>Edit Course</h2>
+                            <form class="edit-course-form">
+                                <div class="input-row">
+                                    <label for="edit-course-name">Course
+                                        Name</label>
+                                    <input type="text" id="edit-course-name"
+                                        value="Introduction to Programming"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-course-code">Course
+                                        Code</label>
+                                    <input type="text" id="edit-course-code"
+                                        value="CS101" required readonly>
+                                </div>
+                                <div class="input-row">
+                                    <label
+                                        for="edit-department">Department</label>
+                                    <select id="edit-department" required>
+                                        <option value="cs" selected>Computer
+                                            Science</option>
+                                        <option value="eng">Engineering</option>
+                                        <option value="arts">Arts</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-credits">Credits</label>
+                                    <input type="number" id="edit-credits"
+                                        value="3" required>
+                                </div>
+                                <div class="input-row">
+                                    <label
+                                        for="edit-instructor">Instructor</label>
+                                    <select id="edit-instructor" required>
+                                        <option value="john-smith" selected>Dr.
+                                            John Smith</option>
+                                        <option value="sarah-johnson">Dr. Sarah
+                                            Johnson</option>
+                                        <option value="david-lee">Dr. David
+                                            Lee</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-capacity">Capacity</label>
+                                    <input type="number" id="edit-capacity"
+                                        value="60" required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="edit-status">Status</label>
+                                    <select id="edit-status" required>
+                                        <option value="active"
+                                            selected>Active</option>
+                                        <option
+                                            value="inactive">Inactive</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="submit-btn">Save
+                                    Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attendance Tab -->
+                <div id="attendance" class="tab-content">
+                    <div class="attendance-header">
+                        <h2>Attendance Management</h2>
+                        <div class="attendance-filters">
+                            <select id="dept-filter">
+                                <option value>All Departments</option>
+                                <!-- Department options -->
+                            </select>
+                            <select id="course-filter">
+                                <option value>All Courses</option>
+                                <!-- Course options -->
+                            </select>
+                            <input type="date" id="date-filter">
+                        </div>
+                    </div>
+
+                    <!-- Attendance Table -->
+                    <section class="attendance-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <th>Course</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ST2024001</td>
+                                    <td>John Doe</td>
+                                    <td>CS101</td>
+                                    <td>2024-03-20</td>
+                                    <td class="present">Present</td>
+                                    <td>
+                                        <button class="edit-btn">Edit</button>
+                                    </td>
+                                </tr>
+                                <!-- More attendance rows -->
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Edit Attendance Modal -->
+                    <div class="modal edit-modal edit-attendance-modal">
+                        <div class="modal-content">
+                            <span class="close-modal-btn">&times;</span>
+                            <h2>Edit Attendance</h2>
+                            <form class="edit-attendance-form">
+                                <div class="input-row">
+                                    <label for="edit-student-id">Student
+                                        ID</label>
+                                    <input type="text" id="edit-student-id"
+                                        value="ST2024001" disabled>
+                                </div>
+
+                                <div class="input-row">
+                                    <label for="edit-student-name">Student
+                                        Name</label>
+                                    <input type="text" id="edit-student-name"
+                                        value="John Doe" disabled>
+                                </div>
+
+                                <div class="input-row">
+                                    <label
+                                        for="edit-course-select">Course</label>
+                                    <input type="text" id="edit-course-select"
+                                        value="CS101" required>
+                                </div>
+
+                                <div class="input-row">
+                                    <label
+                                        for="edit-attendance-date">Date</label>
+                                    <input type="date" id="edit-attendance-date"
+                                        value="2024-03-20" required>
+                                </div>
+
+                                <div class="input-row">
+                                    <label for="edit-status">Status</label>
+                                    <select id="edit-status" required>
+                                        <option value="Present"
+                                            selected>Present</option>
+                                        <option value="Absent">Absent</option>
+                                        <option value="Late">Late</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="submit-btn">Update
+                                    Attendance</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Examinations Tab -->
+                <div id="examinations" class="tab-content">
+                    <div class="examinations-header">
+                        <h2>Examination Management</h2>
+                        <button class="add-btn">Schedule New Exam</button>
+                    </div>
+
+                    <!-- Exam Schedule Table -->
+                    <section class="exam-schedule-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Exam ID</th>
+                                    <th>Course</th>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Venue</th>
+                                    <th>Duration</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>EX2024001</td>
+                                    <td>CS101 - Introduction to
+                                        Programming</td>
+                                    <td>Mid Term</td>
+                                    <td>2024-04-15</td>
+                                    <td>09:00 AM</td>
+                                    <td>Hall A</td>
+                                    <td>120 min</td>
+                                    <td>
+                                        <button
+                                            class="edit-btn">Edit</button>
+                                        <button
+                                            class="delete-btn">Delete</button>
+                                    </td>
+                                </tr>
+                                <!-- More exam rows -->
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Schedule Exam Modal -->
+                    <div class="schedule-exam-modal add-modal modal">
+                        <div class="modal-content">
+                            <span class="close-modal-btn">&times;</span>
+                            <h2>Schedule New Examination</h2>
+                            <form class="schedule-exam-form">
+                                <div class="input-row">
+                                    <label for="exam-course">Course</label>
+                                    <select id="exam-course" required>
+                                        <!-- Course options -->
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="exam-type">Examination
+                                        Type</label>
+                                    <select id="exam-type" required>
+                                        <option value="entrance"
+                                            selected>Entrance</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <label for="exam-date">Date</label>
+                                    <input type="date" id="exam-date"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="exam-time">Time</label>
+                                    <input type="time" id="exam-time"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="exam-venue">Venue</label>
+                                    <input type="text" id="exam-venue"
+                                        required>
+                                </div>
+                                <div class="input-row">
+                                    <label for="exam-duration">Duration
+                                        (minutes)</label>
+                                    <input type="number" id="exam-duration"
+                                        required>
+                                </div>
+                                <button type="submit"
+                                    class="submit-btn">Schedule
+                                    Exam</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Edit Exam Modal -->
+                    <div class="modal edit-modal edit-exam-modal">
+                        <div class="modal-content">
+                            <span class="close-modal-btn">&times;</span>
+                            <h2>Edit Examination</h2>
+                            <form class="edit-exam-form">
+                                <div class="input-row">
+                                    <label for="edit-exam-course">Course</label>
+                                    <input type="text" id="edit-exam-course"
+                                        value="CS101 - Introduction to Programming"
+                                        required>
+                                </div>
+
+                                <div class="input-row">
+                                    <label for="edit-exam-type">Examination
+                                        Type</label>
+                                    <select id="edit-exam-type" required>
+                                        <option value="entrance"
+                                            selected>Entrance</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-row">
+                                    <label for="edit-exam-date">Date</label>
+                                    <input type="date" id="edit-exam-date"
+                                        value="2024-04-15" required>
+                                </div>
+
+                                <div class="input-row">
+                                    <label for="edit-exam-time">Time</label>
+                                    <input type="time" id="edit-exam-time"
+                                        value="09:00" required>
+                                </div>
+
+                                <div class="input-row">
+                                    <label for="edit-exam-venue">Venue</label>
+                                    <input type="text" id="edit-exam-venue"
+                                        value="Hall A" required>
+                                </div>
+
+                                <div class="input-row">
+                                    <label for="edit-exam-duration">Duration
+                                        (minutes)</label>
+                                    <input type="number" id="edit-exam-duration"
+                                        value="120" required>
+                                </div>
+
+                                <button type="submit" class="submit-btn">Update
+                                    Exam</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="profile" class="tab-content">
+                    <h2>College Admin Profile</h2>
+
+                    <!-- Update Profile Section -->
+                    <section class="update-profile">
+                        <h3>Update Profile</h3>
+                        <form class="profile-form">
+                            <div class="input-row">
+                                <label for="college-admin-name">Full
+                                    Name</label>
+                                <input type="text" id="college-admin-name"
+                                    name="college-admin-name"
+                                    value="College Admin Name" required />
+                            </div>
+                            <div class="input-row">
+                                <label for="college-admin-email">Email</label>
+                                <input type="email" id="college-admin-email"
+                                    name="college-admin-email"
+                                    value="collegeadmin@example.com" required />
+                            </div>
+                            <button type="submit" class="submit-btn">Save
+                                Changes</button>
+                        </form>
+                    </section>
+
+                    <!-- Change Password Section -->
+                    <section class="change-password">
+                        <h3>Change Password</h3>
+                        <form class="change-password-form">
+                            <div class="input-row">
+                                <label for="college-current-password">Current
+                                    Password</label>
+                                <input type="password"
+                                    id="college-current-password"
+                                    name="current-password" required />
+                            </div>
+                            <div class="input-row">
+                                <label for="college-new-password">New
+                                    Password</label>
+                                <input type="password" id="college-new-password"
+                                    name="new-password" required />
+                            </div>
+                            <div class="input-row">
+                                <label for="college-confirm-password">Confirm
+                                    New Password</label>
+                                <input type="password"
+                                    id="college-confirm-password"
+                                    name="confirm-password" required />
+                            </div>
+                            <button type="submit" class="submit-btn">Update
+                                Password</button>
+                        </form>
+                    </section>
+                </div>
+
+                <div id="log-out" class="tab-content">
+                    <div class="logout-confirmation">
+                        <h2>Are you sure you want to log out?</h2>
+                        <div class="logout-actions">
+                            <button class="yes-btn">Yes</button>
+                            <button class="no-btn">No</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- JS -->
+        <script type="text/javascript"
+            src="assets/js/jquery-1.12.4.min.js"></script>
+        <script type="text/javascript"
+            src="assets/js/navigation.js"></script>
+        <script type="text/javascript" src="assets/js/custom.js"></script>
+    </body>
+</html>

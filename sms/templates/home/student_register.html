@@ -1,0 +1,172 @@
+{% extends "home/base.html" %}
+{% block title %} Register {% endblock title %}
+
+{% block body %}
+<div class="container mt-5">
+    <li class="">
+        <a href="/home/school/register/" class="btn btn-primary">School Register</a>
+    </li>
+    <h2 class="text-center mb-4">Student Registration</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="p-4 border rounded shadow-sm">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            <strong>There was an error with your registration:</strong>
+            <ul>
+                {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                <li><strong>{{ field|title }}:</strong> {{ error }}</li>
+                {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Username</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                <div class="text-danger">
+                    {% for error in form.username.errors %}
+                    <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                <div class="text-danger">
+                    {% for error in form.email.errors %}
+                    <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Password</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                <div class="text-danger">
+                    {% for error in form.password.errors %}
+                    <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Confirm Password</label>
+                {{ form.confirm_password }}
+                {% if form.confirm_password.errors %}
+                <div class="text-danger">
+                    {% for error in form.confirm_password.errors %}
+                    <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">First Name</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                <div class="text-danger">
+                    {% for error in form.first_name.errors %}
+                    <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Middle Name</label>
+                {{ form.middle_name }}
+                {% if form.middle_name.errors %}
+                <div class="text-danger">
+                    {% for error in form.middle_name.errors %}
+                    <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Last Name</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                <div class="text-danger">
+                    {% for error in form.last_name.errors %}
+                    <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Phone</label>
+                {{ form.phone }}
+                {% if form.phone.errors %}
+                <div class="text-danger">
+                    {% for error in form.phone.errors %}
+                    <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Address</label>
+                {{ form.address }}
+                {% if form.address.errors %}
+                <div class="text-danger">
+                    {% for error in form.address.errors %}
+                    <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Date of Birth</label>
+                {{ form.dob }}
+                {% if form.dob.errors %}
+                <div class="text-danger">
+                    {% for error in form.dob.errors %}
+                    <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Upload Documents (PDF only)</label>
+                {{ form.documents }}
+                {% if form.documents.errors %}
+                <div class="text-danger">
+                    {% for error in form.documents.errors %}
+                    <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+</div>
+{% endblock body %}

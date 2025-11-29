@@ -1,0 +1,58 @@
+{% extends "./student_base.html" %}
+
+{% block body %}
+<h2>Your Applications</h2>
+{% if applications %}
+<table>
+  <thead>
+    <tr>
+      <th>School</th>
+      <th>Course</th>
+      <th>Status</th>
+      <th>Applied At</th>
+      <th>Result</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for application in applications %}
+    <tr>
+      <td>{{ application.school.name }}</td>
+      <td>{{ application.course.name }}</td>
+      <td>{{ application.get_status_display }}</td>
+      <td>{{ application.applied_at }}</td>
+      <td>
+        {% if application.has_results %}
+        Published
+        {% else %}
+        Not Published
+        {% endif %}
+      </td>
+      <td>
+        {% if not application.has_results %}
+
+        <a href="{% url 'edit_application' application.id %}">Edit</a> |
+        <a href="{% url 'delete_application' application.id %}"
+          onclick="return confirm('Are you sure you want to delete this application?');">Delete</a> |
+        <a href="{% url 'show_application' application.id %}">Show</a>
+        {% endif %}
+
+        {% if application.has_results %}
+        <a href="{% url 'student_result_list' application.id %}" class="btn btn-info">View Results</a>
+        {% endif %}
+
+        {% if application.has_results and not application.has_admission %}
+        <a href="{% url 'admission_create' application.id %}" class="btn btn-primary">
+          Create Admission
+        </a>
+        {% endif %}
+
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>You have not applied to any schools yet.</p>
+{% endif %}
+{% endblock %}

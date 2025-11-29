@@ -1,0 +1,12 @@
+{% extends "./student_base.html" %}
+
+{% block content %}
+<h3>Raw eSewa API Response</h3>
+<pre>{{ response|json_script:"response_data" }}</pre>
+
+<h4>Payment Details</h4>
+<p>Transaction ID: {{ payment.transaction_id }}</p>
+<p>Admission Status: {{ admission.status }}</p>
+
+
+{% endblock %}

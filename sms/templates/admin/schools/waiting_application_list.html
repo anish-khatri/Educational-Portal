@@ -1,0 +1,42 @@
+{% extends "./school_base.html" %} {% block body %}
+<div class="container">
+  <h2>{{ school.name }}</h2>
+
+  {% if applications %}
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Application ID</th>
+        <th>Student ID</th>
+        <th>Student Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for application in applications %}
+      <tr>
+        <td>{{ application.id }}</td>
+        <td>{{ application.student.id }}</td>
+        <td>{{ application.student.first_name }} {{ application.student.last_name }}</td>
+        <td>{{ application.student.phone }}</td>
+        <td>{{ application.student.user.email }}</td>
+        <td>{{ application.status }}</td>
+        <td>
+          <a href="{% url 'school_show_application' application.id %}" class="btn btn-info">View</a>
+
+          <a href="{% url 'create_student_entrance_exam' application.id %}" class="btn btn-success">Approve
+            Exam</a>
+
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No applications found.</p>
+  {% endif %}
+</div>
+{% endblock %}

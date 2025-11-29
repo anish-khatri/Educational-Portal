@@ -1,0 +1,64 @@
+{% extends "home/base.html" %}
+{% block title %} Login {% endblock title %}
+
+{% block body %}
+<div class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <h2 class="text-2xl font-bold text-center text-gray-800">Login</h2>
+
+        {% if messages %}
+            <div class="mt-4">
+                {% for message in messages %}
+                    <p class="text-red-500">{{ message }}</p>
+                {% endfor %}
+            </div>
+            <script>
+                // Remove any previous localStorage item if login fails
+                localStorage.removeItem("user_logged_in");
+            </script>
+        {% endif %}
+
+        <form method="POST" class="mt-4 grid gap-1">
+            {% csrf_token %}
+            <div>
+                <label class="block text-gray-700">Email or Username</label>
+                {{ form.email_or_username }}
+            </div>
+            <div class="mt-2">
+                <label class="block text-gray-700">Password</label>
+                {{ form.password }}
+            </div>
+            <button type="submit" class="mt-4 w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700">
+                Login
+            </button>
+        </form>
+
+        <p class="mt-4 text-center text-gray-600">Don't have an account? 
+            <a href="{% url 'register' %}" class="text-blue-600">Sign Up</a>
+        </p>
+    </div>
+</div>
+
+<script>
+    {% if login_success %}
+        const loginStatus = {
+            value: true,
+            expiry: new Date().getTime() + 10 * 60 * 1000 
+        };
+        localStorage.setItem("user_logged_in", JSON.stringify(loginStatus));
+    {% endif %}
+
+    const checkLoginStatus = () => {
+        const loginStatus = localStorage.getItem("user_logged_in");
+        if (loginStatus) {
+            const parsedStatus = JSON.parse(loginStatus);
+            if (parsedStatus.value && new Date().getTime() < parsedStatus.expiry) {
+                window.location.href = '/';
+            }
+        }
+    };
+
+    checkLoginStatus();
+</script>
+
+{% endblock body %}

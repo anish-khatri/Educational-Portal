@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGate Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css"
+      href="assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+  </head>
+  <body>
+    <div class="edugate-admin-dashboard" id="edugate-admin">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="logo">College Portal</div>
+        <button class="close-sidebar-btn">×</button>
+        <nav>
+          <ul class="tabs">
+            <li data-tab="dashboard" class="active"><a
+                href="#">Dashboard</a></li>
+            <li data-tab="manage-colleges"><a href="#">Manage Colleges</a></li>
+            <li data-tab="subscription-plan"><a href="#">Subscription
+                Plans</a></li>
+            <li data-tab="admin-profile"><a href="#">Profile</a></li>
+            <li data-tab="log-out"><a href="#">Logout</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Overlay (Initially hidden) -->
+      <div class="overlay"></div>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+          <!-- Hamburger Menu -->
+          <div class="hamburger-menu">&#9776;</div>
+          <input type="text" placeholder="Search colleges..."
+            class="search-bar">
+          <div class="profile-menu">Admin</div>
+        </header>
+
+        <div id="dashboard" class="tab-content active">
+          <section class="overview">
+            <div class="card">
+              <h3>Total Subscribed Colleges</h3>
+              <p>35</p>
+            </div>
+            <div class="card">
+              <h3>Monthly Subscriptions</h3>
+              <p>20</p>
+            </div>
+            <div class="card">
+              <h3>Annual Subscriptions</h3>
+              <p>10</p>
+            </div>
+            <div class="card">
+              <h3>Lifetime Subscriptions</h3>
+              <p>5</p>
+            </div>
+          </section>
+
+          <section class="subscriptions-table">
+            <h2>Manage Subscriptions</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>College Name</th>
+                  <th>Subscription Type</th>
+                  <th>Status</th>
+                  <th>Renewal Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ABC College</td>
+                  <td>Monthly</td>
+                  <td>Active</td>
+                  <td>2025-01-31</td>
+                  <td>
+                    <button class="suspend-btn">Suspend</button>
+                  </td>
+                </tr>
+                <tr class="expired">
+                  <td>XYZ College</td>
+                  <td>Annual</td>
+                  <td>Expired</td>
+                  <td>2025-01-15</td>
+                  <td>
+                    <button class="notify-btn">Notify College</button>
+                    <button class="suspend-btn">Suspend</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>LMN College</td>
+                  <td>Lifetime</td>
+                  <td>Active</td>
+                  <td>--</td>
+                  <td>
+                    <button class="suspend-btn">Suspend</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+
+        <div id="manage-colleges" class="tab-content">
+          <div class="manage-colleges-header">
+            <button class="add-btn">Add New College</button>
+          </div>
+
+          <!-- Summary Cards -->
+          <section class="summary-cards">
+            <div class="card">Total Colleges: 50</div>
+            <div class="card">Active: 40</div>
+            <div class="card">Expired: 8</div>
+            <div class="card">New This Month: 2</div>
+          </section>
+
+          <!-- Colleges Table -->
+          <section class="colleges-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>College ID</th>
+                  <th>College Name</th>
+                  <th>Location</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>101</td>
+                  <td>XYZ College</td>
+                  <td>New York</td>
+                  <td class="status active">Active</td>
+                  <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="suspend-btn">Suspend</button>
+                    <button class="delete-btn">Delete</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>102</td>
+                  <td>ABC University</td>
+                  <td>California</td>
+                  <td class="status expired">Expired</td>
+                  <td>
+                    <button class="notify-btn">Notify</button>
+                    <button class="delete-btn">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- Add New College Modal -->
+          <div class="add-college-modal add-modal modal">
+            <div class="modal-content">
+              <span class="close-modal-btn">&times;</span>
+              <h2>Add New College</h2>
+              <form class="add-college-form">
+                <div class="input-row">
+                  <label for="college-name">College Name</label>
+                  <input type="text" id="college-name" name="college-name"
+                    required />
+                </div>
+                <div class="input-row">
+                  <label for="college-id">College ID</label>
+                  <input type="text" id="college-id" name="college-id"
+                    required />
+                </div>
+                <div class="input-row">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+                <div class="input-row">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" required />
+                </div>
+                <div class="input-row">
+                  <label for="address">Address</label>
+                  <input type="text" id="address" name="address" required />
+                </div>
+                <div class="input-row">
+                  <label for="subscription-status">Subscription Status</label>
+                  <select id="subscription-status" name="subscription-status">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+                <button type="submit" class="submit-btn">Add College</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Edit College Modal -->
+          <div class="edit-college-modal edit-modal modal">
+            <div class="modal-content">
+              <span class="close-modal-btn">&times;</span>
+              <h2>Edit College</h2>
+              <form class="edit-college-form">
+                <div class="input-row">
+                  <label for="edit-college-name">College Name</label>
+                  <input type="text" id="edit-college-name" name="college-name"
+                    value="ABC College" required />
+                </div>
+                <div class="input-row">
+                  <label for="edit-college-id">College ID</label>
+                  <input type="text" id="edit-college-id" name="college-id"
+                    value="12345" required />
+                </div>
+                <div class="input-row">
+                  <label for="edit-email">Email</label>
+                  <input type="email" id="edit-email" name="email"
+                    value="abc@college.com" required />
+                </div>
+                <div class="input-row">
+                  <label for="edit-phone">Phone</label>
+                  <input type="tel" id="edit-phone" name="phone"
+                    value="+123 456 789" required />
+                </div>
+                <div class="input-row">
+                  <label for="edit-address">Address</label>
+                  <input type="text" id="edit-address" name="address"
+                    value="123 Main Street, City, Country" required />
+                </div>
+                <div class="input-row">
+                  <label for="edit-subscription-status">Subscription
+                    Status</label>
+                  <select id="edit-subscription-status"
+                    name="subscription-status">
+                    <option value="active" selected>Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+                <button type="submit" class="submit-btn">Save Changes</button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="subscription-plan" class="tab-content">
+          <!-- Subscription Plans Dashboard Section -->
+          <section class="subscription-plans-dashboard">
+            <h2>Subscription Plans</h2>
+            <div class="subscription-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>College Name</th>
+                    <th>Subscription Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Payment Status</th>
+                    <th>Contact Person</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ABC College</td>
+                    <td>Premium</td>
+                    <td>2024-01-01</td>
+                    <td>2025-01-01</td>
+                    <td>Completed</td>
+                    <td>John Doe</td>
+                  </tr>
+                  <tr>
+                    <td>XYZ University</td>
+                    <td>Basic</td>
+                    <td>2023-07-01</td>
+                    <td>2024-07-01</td>
+                    <td>Pending</td>
+                    <td>Jane Smith</td>
+                  </tr>
+                  <tr>
+                    <td>LMN Institute</td>
+                    <td>Standard</td>
+                    <td>2024-03-15</td>
+                    <td>2025-03-15</td>
+                    <td>Completed</td>
+                    <td>Robert Brown</td>
+                  </tr>
+                  <tr>
+                    <td>DEF College</td>
+                    <td>Premium</td>
+                    <td>2023-12-01</td>
+                    <td>2024-12-01</td>
+                    <td>Overdue</td>
+                    <td>Emily Green</td>
+                  </tr>
+                  <tr>
+                    <td>PQR College</td>
+                    <td>Basic</td>
+                    <td>2024-05-01</td>
+                    <td>2025-05-01</td>
+                    <td>Completed</td>
+                    <td>Michael White</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <div id="admin-profile" class="tab-content">
+          <h2>Admin Profile</h2>
+
+          <!-- Update Profile Section -->
+          <section class="update-profile">
+            <h3>Update Profile</h3>
+            <form class="profile-form">
+              <div class="input-row">
+                <label for="admin-name">Full Name</label>
+                <input type="text" id="admin-name" name="admin-name"
+                  value="Admin Name" required />
+              </div>
+              <div class="input-row">
+                <label for="admin-email">Email</label>
+                <input type="email" id="admin-email" name="admin-email"
+                  value="admin@example.com" required />
+              </div>
+              <button type="submit" class="submit-btn">Save Changes</button>
+            </form>
+          </section>
+
+          <!-- Change Password Section -->
+          <section class="change-password">
+            <h3>Change Password</h3>
+            <form class="change-password-form">
+              <div class="input-row">
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password"
+                  name="current-password" required />
+              </div>
+              <div class="input-row">
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" name="new-password"
+                  required />
+              </div>
+              <div class="input-row">
+                <label for="confirm-password">Confirm New Password</label>
+                <input type="password" id="confirm-password"
+                  name="confirm-password" required />
+              </div>
+              <button type="submit" class="submit-btn">Update Password</button>
+            </form>
+          </section>
+        </div>
+
+        <div id="log-out" class="tab-content">
+          <!-- Logout Confirmation Section -->
+          <div class="logout-confirmation">
+            <h2>Are you sure you want to log out?</h2>
+            <div class="logout-actions">
+              <button class="yes-btn">Yes</button>
+              <button class="no-btn">No</button>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+
+    <!-- JS -->
+    <script type="text/javascript"
+      src="assets/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="assets/js/navigation.js"></script>
+    <script type="text/javascript" src="assets/js/custom.js"></script>
+  </body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EduGate Student Dashboard</title>
+        <link rel="stylesheet" type="text/css"
+            href="assets/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="css/dashboard.css">
+    </head>
+    <body>
+        <div class="edugate-student-dashboard" id="edugate-student">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="logo">College Portal</div>
+                <button class="close-sidebar-btn">&times;</button>
+                <nav>
+                    <ul class="tabs">
+                        <li data-tab="dashboard" class="active"><a
+                                href="#">Dashboard</a></li>
+                        <li data-tab="admission-form"><a href="#">Fill Admission
+                                Form</a></li>
+                        <li data-tab="application-status"><a
+                                href="#">Application Status</a></li>
+                        <li data-tab="notifications"><a
+                                href="#">Notifications</a></li>
+                        <li data-tab="student-profile"><a
+                                href="#">Profile</a></li>
+                        <li data-tab="log-out"><a href="#">Logout</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <header class="header">
+                    <div class="hamburger-menu">&#9776;</div>
+                    <h2>Welcome, Student</h2>
+                    <div class="profile-menu">My Profile</div>
+                </header>
+
+                <div id="dashboard" class="tab-content active">
+                    <section class="overview">
+                        <div class="card">
+                            <h3>Fill Admission Form</h3>
+                            <p>Complete your admission application.</p>
+                            <button>Go to Form</button>
+                        </div>
+                        <div class="card">
+                            <h3>Check Application Status</h3>
+                            <p>View your application progress.</p>
+                            <button>View Status</button>
+                        </div>
+                        <div class="card">
+                            <h3>Notifications</h3>
+                            <p>Check for important updates.</p>
+                            <button>View Notifications</button>
+                        </div>
+                    </section>
+                </div>
+
+                <div id="admission-form" class="tab-content">
+                    <h2>Admission Form</h2>
+                    <form class="admission-form">
+                        <h3>Personal Details</h3>
+                        <label>Full Name</label>
+                        <input type="text" required>
+                        <label>Email</label>
+                        <input type="email" required>
+                        <label>Phone</label>
+                        <input type="tel" required>
+                        <label>Gender</label>
+                        <select required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <label>Date of Birth</label>
+                        <input type="date" required>
+
+                        <h3>Academic Information</h3>
+                        <label>SEE Symbol Number</label>
+                        <input type="text" required>
+                        <label>SEE Grade</label>
+                        <input type="text" required>
+                        <label>SEE Certificate</label>
+                        <input type="file" required>
+
+                        <h3>College & Course Selection</h3>
+                        <label>Choose College</label>
+                        <select required>
+                            <option>Select College</option>
+                        </select>
+                        <label>Choose Faculty</label>
+                        <select required>
+                            <option>Science</option>
+                            <option>Management</option>
+                            <option>Humanities</option>
+                        </select>
+
+                        <button type="submit">Submit Application</button>
+                    </form>
+                </div>
+
+                <div id="application-status" class="tab-content">
+                    <h2>Application Status</h2>
+                    <table>
+                        <tr>
+                            <th>Application ID</th>
+                            <th>College</th>
+                            <th>Status</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr>
+                            <td>12345</td>
+                            <td>ABC College</td>
+                            <td>Pending</td>
+                            <td>Under Review</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="notifications" class="tab-content">
+                    <h2>Notifications</h2>
+                    <ul>
+                        <li>Your application is under review.</li>
+                        <li>Admission result will be announced soon.</li>
+                    </ul>
+                </div>
+
+                <div id="student-profile" class="tab-content">
+                    <h2>Profile</h2>
+                    <form>
+                        <label>Full Name</label>
+                        <input type="text" value="John Doe" required>
+                        <label>Email</label>
+                        <input type="email" value="johndoe@example.com"
+                            required>
+                        <button type="submit">Save Changes</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+        <!-- JS -->
+        <script type="text/javascript"
+            src="assets/js/jquery-1.12.4.min.js"></script>
+        <script type="text/javascript" src="assets/js/navigation.js"></script>
+        <script type="text/javascript" src="assets/js/custom.js"></script>
+    </body>
+</html>

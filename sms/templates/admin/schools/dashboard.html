@@ -1,0 +1,105 @@
+{% extends "./school_base.html" %}
+{% block title %} Dashboard {% endblock title %} 
+
+{% block body %}
+<div class="container my-4">
+    <h2 class="mb-4">Dashboard</h2>
+
+    <section class="grid grid-cols-5 gap-3">
+        <div class="">
+            <div class="card text-white bg-primary h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Total Students</h5>
+                    <p class="card-text fs-4">{{ student_count }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="card text-white bg-success h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Total Courses</h5>
+                    <p class="card-text fs-4">{{ course_count }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="card text-white bg-warning h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Applications</h5>
+                    <p class="card-text fs-4">{{ application_total }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="card text-white bg-info h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Admissions</h5>
+                    <p class="card-text fs-4">{{ admission_count }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="card text-white bg-secondary h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Approved Applications</h5>
+                    <p class="card-text fs-4">{{ approved_applications }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="card text-white bg-danger h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Pending Applications</h5>
+                    <p class="card-text fs-4">{{ pending_applications }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="card text-white bg-dark h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Waiting Applications</h5>
+                    <p class="card-text fs-4">{{ waiting_applications }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="my-5">
+
+    <section>
+        <h4>Recent Applications</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Student</th>
+                        <th>Status</th>
+                        <th>Symbol No</th>
+                        <th>Date Applied</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for app in recent_applications %}
+                    <tr>
+                        <td>{{ app.student.first_name }} {{ app.student.last_name }}</td>
+                        <td>{{ app.status }}</td>
+                        <td>{{ app.symbol_number }}</td>
+                        <td>{{ app.applied_at|date:"M d, Y" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No recent applications found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+{% endblock body %}

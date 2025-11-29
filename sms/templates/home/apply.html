@@ -1,0 +1,25 @@
+{% extends "home/base.html" %}
+
+{% block title %} Apply to {{ school.name }} {% endblock title %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2 class="text-center">Apply to {{ school.name }}</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="p-4 border rounded shadow-sm">
+        {% csrf_token %}
+
+        {% if messages %}
+        <div class="alert alert-danger">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary w-100">Submit Application</button>
+    </form>
+</div>
+{% endblock body %}

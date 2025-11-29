@@ -1,0 +1,44 @@
+{% extends "./school_base.html" %}
+
+{% block content %}
+<h2>Create Entrance Exam for Application {{ application.id }}</h2>
+
+<!-- Success or error message -->
+{% if messages %}
+<div class="alert alert-info">
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Form to create entrance exam -->
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="exam" class="form-label">Entrance Exam</label>
+        <select class="form-select" name="exam" id="exam">
+            {% for exam in application.school.exams.all %}
+            <option value="{{ exam.id }}" {% if exam.id==form.exam.id %}selected{% endif %}>
+                {{ exam.exam_name }} - {{ exam.exam_date }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="student" class="form-label">Student</label>
+        <input type="text" class="form-control"
+            value="{{ application.student.first_name }} {{ application.student.last_name }}" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="student_id" class="form-label">Student ID</label>
+        <input type="text" class="form-control" value="{{ application.student.user.username }}" readonly>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Entrance Exam and Send ID Card</button>
+</form>
+
+{% endblock %}

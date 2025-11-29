@@ -1,0 +1,34 @@
+{% extends "home/base.html" %}
+
+{% block title %} School Details {% endblock title %}
+
+{% block body %}
+<div class="wrapper">
+    <div class="container mt-4">
+        <h2 class="text-center">School Details</h2>
+
+        <div class="card">
+            {% if school.image %}
+                <img src="{{ school.image.url }}" alt="{{ school.name }} image" class="img-fluid rounded" style="height: 300px; object-fit: cover;">
+            {% else %}
+                <span>No Image Available</span>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ school.name }}</h5>
+                <p class="card-text"><strong>Address:</strong> {{ school.address }}</p>
+                <p class="card-text"><strong>Contact:</strong> {{ school.contact }}</p>
+                <p class="card-text"><strong>Subscription End Date:</strong> {{ school.subscription_end_date }}</p>
+                <p class="card-text">
+                    {% if school.is_subscription_active %}
+                        <span class="badge bg-success">Active</span>
+                    {% else %}
+                        <span class="badge bg-danger">Inactive</span>
+                    {% endif %}
+                </p>
+                <a href="{% url 'home_submit_application' pk=school.pk %}" class="btn btn-primary">Apply to this School</a>
+                <a href="{% url 'home_school_list' %}" class="btn btn-secondary">Back to School List</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

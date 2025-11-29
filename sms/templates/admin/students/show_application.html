@@ -1,0 +1,63 @@
+{% extends './student_base.html' %}
+
+{% block title %}Application Details{% endblock %}
+
+{% block body %}
+<div class="container mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-6">Application Details</h1>
+
+  <div class="bg-white shadow-md rounded-lg p-6">
+    <table class="min-w-full table-auto">
+      <thead>
+        <tr>
+          <th class="px-6 py-3 text-left font-semibold text-gray-700">Field</th>
+          <th class="px-6 py-3 text-left font-semibold text-gray-700">Value</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700">
+        <tr>
+          <td class="px-6 py-4 font-medium">Student Name</td>
+          <td class="px-6 py-4">{{ application.student.first_name }} {{ application.student.last_name }}</td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium">School</td>
+          <td class="px-6 py-4">{{ application.school.name }}</td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium">Application Date</td>
+          <td class="px-6 py-4">{{ application.application_date }}</td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium">Status</td>
+          <td class="px-6 py-4">{{ application.get_status_display }}</td>
+        </tr>
+        {% if application.supporting_documents %}
+        <tr>
+          <td class="px-6 py-4 font-medium">Supporting Document</td>
+          <td class="px-6 py-4">
+            <a href="{{ application.supporting_documents.url }}" target="_blank">
+              <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                View Document
+              </button>
+            </a>
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td class="px-6 py-4 font-medium">Supporting Document</td>
+          <td class="px-6 py-4">No supporting document uploaded.</td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+
+    <div class="mt-6">
+      <a href="/student/applications/"
+        class="inline-block px-6 py-3 bg-gray-500 text-white rounded-md hover:bg-gray-600">
+        Back to Applications List
+      </a>
+      <a href="{% url 'show_application_full_data' application.id %}">View Full Application</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "./school_base.html" %}
+
+{% block body %}
+<div class="container">
+    <h2>Admission Details</h2>
+
+    <p><strong>Applicant Name:</strong> {{ admission.application.student.first_name }}
+        {{admission.application.student.last_name }}</p>
+    <p><strong>College:</strong> {{ admission.application.school.name }}</p>
+    <p><strong>Course:</strong> {{ admission.application.course.name }}</p>
+    <p><strong>Admission Fee:</strong> {{ admission.application.course.admission_fees }}</p>
+    <p><strong>Amount Paid:</strong> {{ admission.amount_paid }}</p>
+    <p><strong>Due Amount:</strong> {{ admission.due_amount }}</p>
+    <p><strong>Payment Method:</strong> {{ admission.payment_method }}</p>
+
+    <a href="{% url 'school_admission_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+{% endblock %}

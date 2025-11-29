@@ -1,0 +1,57 @@
+{% extends "admin/base.html" %} {% block body %}
+<div class="container mt-4">
+  <h2 class="text-center">List of Schools</h2>
+  <a href="{% url 'school_create' %}" class="btn btn-primary">Add New School</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Subscription name</th>
+        <th>Subscription start Date</th>
+        <th>Subscription End Date</th>
+        <th>Subscription Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for school in schools %}
+      <tr>
+        <td>
+          {% if school.image %}
+          <img
+            src="{{ school.image.url }}"
+            width="50"
+            height="50"
+            alt="{{ school.name }} image"
+          />
+          {% else %}
+          <span>No Image Available</span>
+          {% endif %}
+        </td>
+        <td>{{ school.name }}</td>
+        <td>{{ school.subscription.name }}</td>
+        <td>{{ school.subscription_start_date|default:"-" }}</td>
+        <td>{{ school.subscription_end_date|default:"-" }}</td>
+        <td>{{ school.status|yesno:"Active,Inactive" }}</td>
+        <td>
+          <a
+            href="{% url 'school_update' school.pk %}"
+            class="btn btn-warning btn-sm"
+            >Edit</a
+          >
+          <a
+            href="{% url 'school_delete' school.pk %}"
+            class="btn btn-danger btn-sm"
+            >Delete</a
+          >
+          <a href="{% url 'school_detail' school.id %}" class="btn btn-success btn-sm">
+            show
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
